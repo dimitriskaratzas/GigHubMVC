@@ -73,6 +73,11 @@ textarea {
     border-radius: 9px;
 }
 
+span.field-validation-error{
+    color: red;
+    font-weight: bold;
+}
+
 body,
 h1,
 h2,
