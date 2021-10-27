@@ -16,6 +16,23 @@ namespace GigHubMVC.Controllers
             _context = new ApplicationDbContext();
         }
 
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Gig)
+                .ToList();
+
+            //var attendees = _context.Attendances
+            //    .Where(a => a.GigId == 1)
+            //    .Select(a => a.Attendee)
+            //    .ToList();
+
+            return View(gigs);
+        }
+
         // GET: Gigs
         [Authorize]
         public ActionResult Create()
