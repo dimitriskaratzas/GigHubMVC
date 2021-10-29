@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 
@@ -92,6 +93,24 @@ namespace GigHubMVC.Controllers
             return RedirectToAction("Mine", "Gigs");
         }
 
-        
+
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var gig = _context.Gigs.Single(g => g.ID == id && g.ArtistId == userId);
+
+            if (gig == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            var viewModel = new GigFormViewModel()
+            {
+                Genres = _context.Genres.ToList(),
+                Date = gig.DateTime.ToString("d MMM yyyy"),
+                Time = gig.DateTime.ToString("HH:mm"),
+                Venue = gig.Venue
+            };
+            return View("Create", viewModel);
+        }
     }
 }
