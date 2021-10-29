@@ -24,6 +24,10 @@ textarea {
     max-width: 280px;
 }
 
+.voffset4{
+    margin-top: 40px;
+}
+
 .navbar-gighub{
     background-color: #ff4342;
     border-color: #ff4342;
