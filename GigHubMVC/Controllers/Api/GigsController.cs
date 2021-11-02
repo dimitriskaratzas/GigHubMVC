@@ -26,6 +26,9 @@ namespace GigHubMVC.Controllers.Api
             if (gig == null)
                 return NotFound();
 
+            if (gig.IsCancelled)
+                return NotFound();
+
             gig.IsCancelled = true;
 
             _context.SaveChanges();
