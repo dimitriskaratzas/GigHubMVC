@@ -44,8 +44,11 @@
                     }
                     @if (Model.ShowActions)
                     {
-                        <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow">
-                            Follow
+                        <button data-user-id="@gig.ArtistId" 
+                                class="btn btn-link 
+                                @(Model.Followings.Contains(gig.ArtistId) ? "following" : "follow")
+                                btn-sm js-toggle-follow">
+                            @(Model.Followings.Contains(gig.ArtistId) ? "Following" : "Follow")
                         </button>
                     }
                 </span>
@@ -108,13 +111,27 @@
             $(".js-toggle-follow").click(function (e) {
                 var button = $(e.target);
                 //console.log(button.attr("data-user-id"));
-                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
-                    .done(function () {
-                        button.text("Following");
-                    })
-                    .fail(function () {
-                        alert("Something failed!")
+                if (button.hasClass("follow")) {
+                    $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                        .done(function () {
+                            button.text("Following");
+                            location.reload();
+                        })
+                        .fail(function () {
+                            alert("Something failed!")
+                        });
+                } else {
+                    $.ajax({
+                        url: "/api/followings/" + button.attr("data-user-id"),
+                        method: "DELETE"
+                    }).done(function () {
+                        button.text("Follow");
+                        location.reload();
+                    }).fail(function (error) {
+                        console.log(error);
+                        alert("Something failed");
                     });
+                }  
             });
         });
     </script>
