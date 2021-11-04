@@ -2,6 +2,7 @@
 using GigHubMVC.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -60,38 +61,41 @@ namespace GigHubMVC.Controllers
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
-            var gigs = _context.Attendances
+
+            var viewModel = new GigsViewModel()
+            {
+                UpcomingGigs = GetGigsUserAttending(userId),
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Gigs I'm attending",
+                Attendances = GetFutureAttendances(userId).ToLookup(a => a.GigId),
+                Followings = GetFollowings(userId).ToLookup(a => a.FolloweeId)
+            };
+
+            return View("Gigs", viewModel);
+        }
+
+        private List<Gig> GetGigsUserAttending(string userId)
+        {
+            return _context.Attendances
                 .Where(a => a.AttendeeId == userId)
                 .Select(a => a.Gig)
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
                 .ToList();
+        }
 
-            var attendances = _context.Attendances
+        private List<Attendance> GetFutureAttendances(string userId)
+        {
+            return _context.Attendances
                 .Where(a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now)
-                .ToList()
-                .ToLookup(a => a.GigId);
+                .ToList();
+        }
 
-            var followings = _context.Followings
+        private List<Following> GetFollowings(string userId)
+        {
+            return _context.Followings
                 .Where(a => a.FollowerId == userId)
-                .ToList()
-                .ToLookup(a => a.FolloweeId);
-
-            var viewModel = new GigsViewModel()
-            {
-                UpcomingGigs = gigs,
-                ShowActions = User.Identity.IsAuthenticated,
-                Heading = "Gigs I'm attending",
-                Attendances = attendances,
-                Followings = followings
-            };
-
-            //var attendees = _context.Attendances
-            //    .Where(a => a.GigId == 1)
-            //    .Select(a => a.Attendee)
-            //    .ToList();
-
-            return View("Gigs", viewModel);
+                .ToList();
         }
 
         // GET: Gigs
