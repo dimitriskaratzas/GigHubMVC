@@ -1,3 +1,9 @@
+using Autofac;
+using Autofac.Integration.Mvc;
+using GigHubMVC.App_Start;
+using GigHubMVC.Models;
+using GigHubMVC.Persistence;
+using GigHubMVC.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +19,7 @@ namespace GigHubMVC
     {
         protected void Application_Start()
         {
+            ContainerConfig.RegisterContainer();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
