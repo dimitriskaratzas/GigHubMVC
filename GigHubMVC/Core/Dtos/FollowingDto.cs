@@ -1,4 +1,4 @@
-﻿namespace GigHubMVC.Dtos
+﻿namespace GigHubMVC.Core.Dtos
 {
     public class FollowingDto
     {

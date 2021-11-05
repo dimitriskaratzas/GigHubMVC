@@ -1,7 +1,8 @@
-﻿using GigHubMVC.Models;
+﻿using GigHubMVC.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
+using GigHubMVC.Persistence;
 
 namespace GigHubMVC.Controllers.Api
 {

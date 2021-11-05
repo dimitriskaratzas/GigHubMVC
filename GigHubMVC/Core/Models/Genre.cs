@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GigHubMVC.Models
+namespace GigHubMVC.Core.Models
 {
     public class Genre
     {

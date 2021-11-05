@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using GigHubMVC.Models;
+using GigHubMVC.Core;
+using GigHubMVC.Core.Models;
 using GigHubMVC.Persistence;
-using GigHubMVC.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

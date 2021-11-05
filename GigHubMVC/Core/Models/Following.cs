@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GigHubMVC.Models
+namespace GigHubMVC.Core.Models
 {
     public class Following
     {

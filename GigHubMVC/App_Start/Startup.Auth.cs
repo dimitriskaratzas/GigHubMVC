@@ -3,9 +3,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using GigHubMVC.Models;
+using GigHubMVC.Core.Models;
+using GigHubMVC.Persistence;
 
 namespace GigHubMVC
 {

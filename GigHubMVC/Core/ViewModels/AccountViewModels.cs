@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace GigHubMVC.Models
+namespace GigHubMVC.Core.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

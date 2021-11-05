@@ -1,10 +1,10 @@
-﻿using GigHubMVC.Models;
+﻿using GigHubMVC.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GigHubMVC.ViewModels
+namespace GigHubMVC.Core.ViewModels
 {
     public class GigDetailsViewModel
     {

@@ -1,7 +1,7 @@
-﻿using GigHubMVC.Models;
+﻿using GigHubMVC.Core.Models;
 using GigHubMVC.Persistence;
-using GigHubMVC.Repositories;
-using GigHubMVC.ViewModels;
+
+using GigHubMVC.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-
+using GigHubMVC.Core;
 
 namespace GigHubMVC.Controllers
 {

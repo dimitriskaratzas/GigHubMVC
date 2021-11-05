@@ -1,4 +1,5 @@
-﻿using GigHubMVC.Models;
+﻿using GigHubMVC.Core.Models;
+using GigHubMVC.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace GigHubMVC.Controllers
 {

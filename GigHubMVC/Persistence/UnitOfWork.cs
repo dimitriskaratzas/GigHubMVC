@@ -1,9 +1,6 @@
-﻿using GigHubMVC.Models;
-using GigHubMVC.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using GigHubMVC.Core;
+using GigHubMVC.Core.Repositories;
+using GigHubMVC.Persistence.Repositories;
 
 namespace GigHubMVC.Persistence
 {
