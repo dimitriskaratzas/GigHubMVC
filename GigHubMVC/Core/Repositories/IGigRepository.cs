@@ -14,5 +14,6 @@ namespace GigHubMVC.Core.Repositories
         Gig GetGigWithArtistAndGenre(int gigId);
         Gig GetGig(int gigId);
         void Add(Gig gig);
+        IEnumerable<Gig> GetUpcomingGigs(string searchTerm = null);
     }
 }
