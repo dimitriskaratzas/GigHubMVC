@@ -13,6 +13,7 @@ namespace GigHubMVC.Core
         IAttendanceRepository Attendances { get; }
         IGenreRepository Genres { get; }
         IFollowingRepository Followings { get; }
+        IApplicationUserRepository Users { get; }
 
         void Complete();
     }

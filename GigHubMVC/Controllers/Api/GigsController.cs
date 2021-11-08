@@ -3,17 +3,18 @@ using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
 using GigHubMVC.Persistence;
+using GigHubMVC.Core;
 
 namespace GigHubMVC.Controllers.Api
 {
     [Authorize]
     public class GigsController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GigsController()
+        public GigsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         [HttpDelete]
@@ -21,8 +22,10 @@ namespace GigHubMVC.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var gig = _context.Gigs
-                .SingleOrDefault(g => g.ID == id && g.ArtistId == userId);
+            var gig = _unitOfWork.Gigs.GetGig(id);
+
+            if (userId != gig.ArtistId)
+                return Unauthorized();
 
             if (gig == null)
                 return NotFound();
@@ -32,7 +35,7 @@ namespace GigHubMVC.Controllers.Api
 
             gig.IsCancelled = true;
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return Ok();
         }
     }
