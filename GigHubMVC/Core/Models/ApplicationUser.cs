@@ -13,8 +13,6 @@ namespace GigHubMVC.Core.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [Required]
-        [StringLength(100)]
         public string Name { get; set; }
 
         public ICollection<Following> Followers { get; set; }
